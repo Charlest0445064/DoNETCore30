@@ -1,0 +1,27 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @Model.NowTime<br />
+    @Model.Message
+</div>
+<script>
+    $.ajax({
+        url: '/Home/YourAction', // 控制器的URL
+        type: 'POST',
+        dataType: 'json',
+        data: { data: 'Hello from Ajax!' }, // 发送的数据
+        success: function (response) {
+            if (response.success) {
+                alert('服务器响应: ' + response.message);
+            }
+        },
+        error: function (xhr, status, error) {
+            alert('发生错误: ' + error);
+        }
+</script>

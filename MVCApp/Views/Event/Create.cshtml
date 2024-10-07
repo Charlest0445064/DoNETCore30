@@ -1,0 +1,30 @@
+﻿@model MVCApp.Dtos.EventViewModel
+
+<div class="container mt-4">
+    <h2>Create Event</h2>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label asp-for="EventDate" class="form-label"></label>
+            <div class="input-group date" id="datepicker">
+                <input asp-for="EventDate" class="form-control" />
+                <span class="input-group-text">
+                    <i class="fa fa-calendar"></i>
+                </span>
+            </div>
+            <span asp-validation-for="EventDate" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#datepicker').datepicker({
+                format: 'yyyy-mm-dd',
+                autoclose: true,
+                todayHighlight: true
+            });
+        });
+    </script>
+}

@@ -1,0 +1,202 @@
+﻿
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model Identity.ViewModel.CombineViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    @await Component.InvokeAsync("Menu")
+    @DateTime.Now
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        新增員工資料
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">新增員工資料</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="itemForm" asp-action="Create" asp-controller="Employees">
+                <div class="modal-body">
+                    <div class="row">
+                       
+                            
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <div class="form-group">
+                                    <label asp-for="Employee.Name" class="control-label"></label>
+                                    <input asp-for="Employee.Name" class="form-control" />
+                                    <span asp-validation-for="Employee.Name" class="text-danger"></span>
+                                </div>
+                                <div class="form-group">
+                                    <label asp-for="Employee.DepartmentId" class="control-label"></label>
+                                    <input asp-for="Employee.DepartmentId" class="form-control" />
+                                    <span asp-validation-for="Employee.DepartmentId" class="text-danger"></span>
+                                </div>
+                              
+                            
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary" >Save changes</button>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <table id="itemList" class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employee.DepartmentId)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.EmployeeList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentId)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.EmployeeId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.EmployeeId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.EmployeeId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.Contents)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.DepartmentId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.StartDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.EndDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.InsertDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.InsertEmployeeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.UpdateDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.UpdateEmployeeId)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.Click)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.News.Enable)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.NewsList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Contents)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DepartmentId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.StartDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InsertDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InsertEmployeeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdateDateTime)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UpdateEmployeeId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Click)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Enable)
+                    </td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.NewsId">Edit</a> |
+                        <a asp-action="Details" asp-route-id="@item.NewsId">Details</a> |
+                        <a asp-action="Delete" asp-route-id="@item.NewsId">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+<script>
+    $(document).ready(function () {
+        // 攔截表單提交事件
+        $('#itemForm').submit(function (e) {
+            e.preventDefault(); // 防止表單的默認提交行為
+
+            // 取得表單數據
+            var formData = $(this).serialize();
+
+            // 發送 AJAX 請求
+            $.ajax({
+                url: '@Url.Action("Create", "Employees")', // 提交表單的控制器方法
+                type: 'POST',
+                data: formData,
+                success: function (response) {
+                    // 如果提交成功，關閉 Modal 並更新母視窗的內容
+                    $('#exampleModal').modal('hide');
+
+                    // 使用新的數據更新母視窗中的資料區域
+                    $('#itemList').html(response);
+                },
+                error: function () {
+                    alert("There was an error submitting the form.");
+                }
+            });
+        });
+    });
+</script>

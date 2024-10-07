@@ -1,0 +1,213 @@
+﻿
+@model Identity.ViewModel.NewsViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<form>
+    <div class="form-group">
+        <label for="CityId">City</label>
+        <select id="CityId" class="form-control">
+            <option value="">-- Select City --</option>
+
+            
+                @foreach (var city in ViewBag.Cities)
+                {
+                    <option value="@city.Value">@city.Text</option>
+                }
+            
+
+           
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="DistrictId">District</label>
+        <select id="DistrictId" class="form-control" disabled>
+            <option value="">-- Select District --</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="VillageId">Village</label>
+        <select id="VillageId" class="form-control" disabled>
+            <option value="">-- Select Village --</option>
+        </select>
+    </div>
+</form>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table table-striped table-hover">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.col.Title)
+            </th>           
+            <th>
+                @Html.DisplayNameFor(model => model.col.DepartmentId)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.col.InsertDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.col.InsertEmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.col.UpdateDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.col.UpdateEmployeeId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.col.Click)
+            </th>
+            
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.News) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>           
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentId)
+            </td>           
+            <td>
+                @Html.DisplayFor(modelItem => item.InsertDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.InsertEmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UpdateEmployeeId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Click)
+            </td>
+            
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NewsId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NewsId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NewsId" onclick="return confirm('確定是否要刪除?')">Delete</a>
+                    <button onclick="loadOrderItems('@item.NewsId')">明細</button>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" onclick="loadOrderItems('@item.NewsId')">
+                        明細
+                    </button>
+            </td>
+        </tr>
+        
+}
+       
+     
+    </tbody>
+</table>
+<!-- 分頁控制 -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(Model.Pagination.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.Pagination.CurrentPage - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+        {
+            <li class="page-item @(Model.Pagination.CurrentPage == i ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.Pagination.CurrentPage == Model.Pagination.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.Pagination.CurrentPage + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="staticBackdropLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div id="detail"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Understood</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function loadOrderItems(id) {
+        $.ajax({
+            url: '@Url.Action("Detail","News")',
+            type: 'GET',
+            data: { id: id },
+            success: function (result) {
+                $("#detail").html(result);
+            }
+        });
+    }
+</script>
+<script>
+    $(document).ready(function () {
+
+        // 當用戶選擇 City 時，通過 AJAX 請求獲取對應的 District
+        $('#CityId').change(function () {
+            var cityId = $(this).val();
+            $('#DistrictId').empty().append('<option value="">-- Select District --</option>');
+            $('#VillageId').empty().append('<option value="">-- Select Village --</option>');
+            $('#DistrictId').prop('disabled', true);
+            $('#VillageId').prop('disabled', true);
+
+            if (cityId) {
+                $.ajax({
+                    url: '@Url.Action("GetDistricts", "City")',
+                    type: 'GET',
+                    data: { cityId: cityId },
+                    success: function (districts) {
+                        
+                        $.each(districts, function (index, district) {
+                            $('#DistrictId').append('<option value="' + district.districtId + '">' + district.name + '</option>');
+                        });
+                        $('#DistrictId').prop('disabled', false);
+                    }
+                });
+            }
+        });
+
+        // 當用戶選擇 District 時，通過 AJAX 請求獲取對應的 Village
+        $('#DistrictId').change(function () {
+            var districtId = $(this).val();
+            $('#VillageId').empty().append('<option value="">-- Select Village --</option>');
+            $('#VillageId').prop('disabled', true);
+
+            if (districtId) {
+                $.ajax({
+                    url: '@Url.Action("GetVillages", "City")',
+                    type: 'GET',
+                    data: { districtId: districtId },
+                    success: function (villages) {
+                        console.log(villages)
+                        $.each(villages, function (index, village) {
+                            $('#VillageId').append('<option value="' + village.villageId + '">' + village.name + '</option>');
+                        });
+                        $('#VillageId').prop('disabled', false);
+                    }
+                });
+            }
+        });
+    });
+
+</script>
