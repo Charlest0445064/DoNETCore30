@@ -1,0 +1,36 @@
+﻿<h2>選擇國家和城市</h2>
+
+<form method="post">
+    <div>
+        <label for="countries">國家：</label>
+        @Html.DropDownList("CountryId", ViewBag.Countries as IEnumerable<SelectListItem>, "請選擇國家", new { @id = "countries", @class = "form-control" })
+    </div>
+
+    <div>
+        <label for="cities">城市：</label>
+        @Html.DropDownList("City", new List<SelectListItem>(), "請選擇城市", new { @id = "cities", @class = "form-control" })
+    </div>
+</form>
+<script type="text/javascript">
+    $(document).ready(function () {
+        // 當國家選項發生變化時
+        $('#countries').change(function () {
+            var countryId = $(this).val();
+
+            // 清空當前城市下拉選單
+            $('#cities').empty();
+
+            if (countryId !== "") {
+                // 發送 AJAX 請求到 GetCities action
+                $.getJSON('@Url.Action("GetCities")', { countryId: countryId }, function (data) {
+                    $('#cities').append($('<option>').text('請選擇城市').attr('value', ''));
+                    $.each(data, function (i, city) {
+                        $('#cities').append($('<option>').text(city.text).attr('value', city.value));
+                    });
+                });
+            } else {
+                $('#cities').append($('<option>').text('請選擇城市').attr('value', ''));
+            }
+        });
+    });
+</script>

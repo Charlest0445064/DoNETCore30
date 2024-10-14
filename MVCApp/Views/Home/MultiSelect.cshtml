@@ -1,0 +1,10 @@
+﻿@model MVCApp.Dtos.DepartmentViewModel
+
+<form asp-action="Submit" method="post">
+    <div>
+        <label>選擇項目</label>
+        @Html.ListBoxFor(m => m.SelectedItems, Model.AvailableItems, new { @class = "form-control" })
+    </div>
+
+    <button type="submit">提交</button>
+</form>

@@ -2,6 +2,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using MVCApp.Filter;
 using MVCApp.Models;
+using MVCApp.Service.DropdownService;
+using MVCApp.Service.LocationService;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,7 +21,8 @@ options.UseSqlServer(builder.Configuration.GetConnectionString("KcgDatabase")));
 builder.Services.AddDefaultIdentity<IdentityUser>(options => { options.SignIn.RequireConfirmedAccount = true; // 可選：啟用帳戶確認
                         }) .AddEntityFrameworkStores<KcgContext>(); // 添加 Razor Pages 支持（這是 Identity UI 的必要部分）
 builder.Services.AddRazorPages();
-
+builder.Services.AddTransient<IDropdownService, DropdownService>();
+builder.Services.AddScoped<ILocationService, LocationService>();
 
 var app = builder.Build();
 
@@ -38,8 +41,21 @@ app.UseRouting();
 
 app.UseAuthorization();
 
+app.MapAreaControllerRoute(
+    name: "Department",
+    areaName: "Department",
+    pattern: "Department/{controller=Sales}/{action=Index}"
+);
+
+app.MapAreaControllerRoute(
+    name: "Admin",
+    areaName: "Admin",
+    pattern: "Admin/{controller=Home}/{action=Index}"
+);
+
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 
 app.Run();
