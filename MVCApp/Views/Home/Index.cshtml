@@ -7,6 +7,16 @@
     
 }
 
+<table id="dg" title="My DataGrid" class="easyui-datagrid" style="width:600px;height:400px"
+       data-options="url:'/Home/GetData', method:'get', singleSelect:true, fitColumns:true">
+    <thead>
+        <tr>
+            <th data-options="field:'id',width:80">ID</th>
+            <th data-options="field:'name',width:120">Name</th>
+            <th data-options="field:'age',width:80">Age</th>
+        </tr>
+    </thead>
+</table>
 
 
 <div class="text-center">

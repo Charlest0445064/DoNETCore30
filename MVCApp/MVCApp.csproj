@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyUI" Version="1.4.5" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.8" />
@@ -31,6 +32,110 @@
     <Folder Include="Areas\Department\Data\" />
     <Folder Include="Areas\Department\Models\" />
     <Folder Include="UploadFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-af.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-am.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-ar.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-bg.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-ca.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-cs.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-cz.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-da.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-de.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-el.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-en.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-es.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-fa.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-fr.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-it.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-jp.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-ko.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-nl.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-pl.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-pt_BR.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-ru.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-sv_SE.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-tr.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-ua.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-zh_CN.js" />
+    <None Include="wwwroot\lib\easyui\locale\easyui-lang-zh_TW.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.accordion.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.calendar.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.checkbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.checkgroup.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.combo.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.combobox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.combogrid.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.combotree.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.combotreegrid.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.datagrid.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.datalist.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.datebox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.datetimebox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.datetimespinner.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.dialog.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.draggable.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.drawer.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.droppable.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.filebox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.form.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.layout.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.linkbutton.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.maskedbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.menu.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.menubutton.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.messager.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.mobile.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.numberbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.numberspinner.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.pagination.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.panel.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.parser.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.passwordbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.progressbar.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.propertygrid.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.radiobutton.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.radiogroup.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.resizable.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.searchbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.sidemenu.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.slider.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.spinner.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.splitbutton.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.swiper.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.switchbutton.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.tabs.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.tagbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.textbox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.timeline.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.timepicker.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.timespinner.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.tooltip.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.tree.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.treegrid.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.validatebox.js" />
+    <None Include="wwwroot\lib\easyui\plugins\jquery.window.js" />
+    <None Include="wwwroot\lib\easyui\src\easyloader.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.accordion.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.calendar.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.combobox.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.datebox.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.draggable.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.droppable.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.form.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.linkbutton.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.menu.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.parser.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.progressbar.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.propertygrid.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.resizable.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.slider.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.tabs.js" />
+    <None Include="wwwroot\lib\easyui\src\jquery.window.js" />
+    <None Include="wwwroot\lib\easyui\themes\material-teal\images\Thumbs.db" />
+    <None Include="wwwroot\lib\easyui\themes\material\images\Thumbs.db" />
   </ItemGroup>
 
 </Project>

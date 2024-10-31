@@ -115,5 +115,18 @@ namespace MVCApp.Controllers
             ViewBag.Countries = _locationService.GetCountries();
             return View();
         }
+
+        public IActionResult GetData()
+        {
+            var data = new List<object>
+            {
+                new { id = 1, name = "John", age = 25 },
+                new { id = 2, name = "Jane", age = 30 },
+                new { id = 3, name = "Tom", age = 35 }
+            };
+
+                    return Json(data);
+        }
+
     }
 }
