@@ -12,8 +12,14 @@ namespace MVCApp.Controllers
         }
         public IActionResult Index()
         {
-            var q = _context.TOPMenu.FirstOrDefault();
-           return View(q);
+           
+           return View();
+        }
+        [HttpPost]
+        public IActionResult Index(Employee data)
+        {
+
+            return View();
         }
 
         public IActionResult Download()

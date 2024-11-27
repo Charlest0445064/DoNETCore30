@@ -6,7 +6,8 @@
     // 準備 HTML 屬性
     
 }
-
+<a href="@Url.Action("DownloadReport", "Report")" target="_blank">下載報表</a>
+<a href="@Url.Action("SendJsonToSSRS", "Report")" >下載報表2</a>
 <table id="dg" title="My DataGrid" class="easyui-datagrid" style="width:600px;height:400px"
        data-options="url:'/Home/GetData', method:'get', singleSelect:true, fitColumns:true">
     <thead>
@@ -17,7 +18,52 @@
         </tr>
     </thead>
 </table>
-
+<table id="tt" class="easyui-datagrid" style="width:400px;height:auto;">
+    <thead>
+        <tr>
+            <th field="name1" width="50">Col 1</th>
+            <th field="name2" width="50">Col 2</th>
+            <th field="name3" width="50">Col 3</th>
+            <th field="name4" width="50">Col 4</th>
+            <th field="name5" width="50">Col 5</th>
+            <th field="name6" width="50">Col 6</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+        <tr>
+            <td>Data 1</td>
+            <td>Data 2</td>
+            <td>Data 3</td>
+            <td>Data 4</td>
+            <td>Data 5</td>
+            <td>Data 6</td>
+        </tr>
+    </tbody>
+</table>
 
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>

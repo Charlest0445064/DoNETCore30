@@ -1,9 +1,19 @@
-﻿@model TOPMenu
+﻿<form id="submitForm">
+    <input type="text" name="name" placeholder="Enter your name" />
+    <button type="submit">Submit</button>
+</form>
+<script>
+    $(document).ready(function () {
+        $("#submitForm").on("submit", function (e) {
+            e.preventDefault(); // 阻止默认表单提交
+            const formData = $(this).serialize(); // 序列化表单数据
+            console.log(formData);
+            $.post("/Demo/Index", formData, function (response) {
+                alert(response.message);
+            }).fail(function () {
+                alert("Error submitting data");
+            });
+        });
+    });
 
-這是從Controller過來的Model資料
-<br />
-Name：@Model.Name
-<br />
-Icon：@Model.Icon
-<br />
-Url：@Model.Url
+</script>

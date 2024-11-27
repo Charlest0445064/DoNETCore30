@@ -4,8 +4,24 @@ using MVCApp.Filter;
 using MVCApp.Models;
 using MVCApp.Service.DropdownService;
 using MVCApp.Service.LocationService;
+using System.Net.Http;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+    builder.Services.AddHttpClient("SSRSClient", client =>
+    {
+        client.BaseAddress = new Uri("http://desktop-4rhibjo/Reports");
+        client.DefaultRequestHeaders.Add("Accept", "application/pdf");
+    })
+   .ConfigurePrimaryHttpMessageHandler(() =>
+   {
+       return new HttpClientHandler
+       {
+           Credentials = new NetworkCredential("Charles", "a$pire0223", "DESKTOP-4RHIBJO")
+       };
+   });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews(options =>
@@ -23,7 +39,7 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => { options.SignIn.Re
 builder.Services.AddRazorPages();
 builder.Services.AddTransient<IDropdownService, DropdownService>();
 builder.Services.AddScoped<ILocationService, LocationService>();
-
+builder.Services.AddHttpClient();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
