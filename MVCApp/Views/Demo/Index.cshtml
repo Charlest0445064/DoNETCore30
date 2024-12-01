@@ -9,7 +9,7 @@
             const formData = $(this).serialize(); // 序列化表单数据
             console.log(formData);
             $.post("/Demo/Index", formData, function (response) {
-                alert(response.message);
+                alert("ok");
             }).fail(function () {
                 alert("Error submitting data");
             });
